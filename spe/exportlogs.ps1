@@ -1,4 +1,5 @@
-#AILogsExporter (SPE version) by https://bartlomiejmucha.com, v0.1 beta
+# AILogsExporter v0.1 (SPE)
+# https://github.com/bartlomiejmucha/Application-Insights-Logs-Exporter
 $result = Read-Variable -Parameters `
     @{ Name = "applicationId"; Value=""; Title="Application Id"}, 
     @{ Name = "apiKey"; Value=""; Title="Api Key"}, 

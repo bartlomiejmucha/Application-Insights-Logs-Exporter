@@ -1,4 +1,5 @@
-#AILogsExporter (Powershell version) by https://bartlomiejmucha.com, v0.1 beta
+# AILogsExporter v0.1 (powershell)
+# https://github.com/bartlomiejmucha/Application-Insights-Logs-Exporter
 Add-Type -AssemblyName System.Net.Http
 
 $applicationId = ""

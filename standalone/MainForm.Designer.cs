@@ -40,20 +40,21 @@
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.logFilePathLabel = new System.Windows.Forms.Label();
             this.logFilePathTextBox = new System.Windows.Forms.TextBox();
+            this.descriptionLinkLabel = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // applicationIdTextBox
             // 
-            this.applicationIdTextBox.Location = new System.Drawing.Point(520, 51);
+            this.applicationIdTextBox.Location = new System.Drawing.Point(384, 109);
             this.applicationIdTextBox.Name = "applicationIdTextBox";
-            this.applicationIdTextBox.Size = new System.Drawing.Size(422, 29);
+            this.applicationIdTextBox.Size = new System.Drawing.Size(462, 29);
             this.applicationIdTextBox.TabIndex = 0;
             // 
             // applicationIdLabel
             // 
             this.applicationIdLabel.AutoSize = true;
             this.applicationIdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.85714F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.applicationIdLabel.Location = new System.Drawing.Point(35, 38);
+            this.applicationIdLabel.Location = new System.Drawing.Point(31, 96);
             this.applicationIdLabel.Name = "applicationIdLabel";
             this.applicationIdLabel.Size = new System.Drawing.Size(257, 42);
             this.applicationIdLabel.TabIndex = 1;
@@ -63,7 +64,7 @@
             // 
             this.apiKeyLabel.AutoSize = true;
             this.apiKeyLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.85714F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.apiKeyLabel.Location = new System.Drawing.Point(35, 118);
+            this.apiKeyLabel.Location = new System.Drawing.Point(31, 176);
             this.apiKeyLabel.Name = "apiKeyLabel";
             this.apiKeyLabel.Size = new System.Drawing.Size(162, 42);
             this.apiKeyLabel.TabIndex = 2;
@@ -71,53 +72,53 @@
             // 
             // apiKeyTextBox
             // 
-            this.apiKeyTextBox.Location = new System.Drawing.Point(520, 131);
+            this.apiKeyTextBox.Location = new System.Drawing.Point(384, 189);
             this.apiKeyTextBox.Name = "apiKeyTextBox";
-            this.apiKeyTextBox.Size = new System.Drawing.Size(422, 29);
+            this.apiKeyTextBox.Size = new System.Drawing.Size(462, 29);
             this.apiKeyTextBox.TabIndex = 3;
             // 
             // startDateTimePicker
             // 
             this.startDateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.startDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.startDateTimePicker.Location = new System.Drawing.Point(520, 210);
+            this.startDateTimePicker.Location = new System.Drawing.Point(384, 268);
             this.startDateTimePicker.Name = "startDateTimePicker";
-            this.startDateTimePicker.Size = new System.Drawing.Size(422, 29);
+            this.startDateTimePicker.Size = new System.Drawing.Size(462, 29);
             this.startDateTimePicker.TabIndex = 4;
             // 
             // startDateTimeLabel
             // 
             this.startDateTimeLabel.AutoSize = true;
             this.startDateTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.85714F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.startDateTimeLabel.Location = new System.Drawing.Point(35, 198);
+            this.startDateTimeLabel.Location = new System.Drawing.Point(31, 256);
             this.startDateTimeLabel.Name = "startDateTimeLabel";
-            this.startDateTimeLabel.Size = new System.Drawing.Size(411, 42);
+            this.startDateTimeLabel.Size = new System.Drawing.Size(287, 42);
             this.startDateTimeLabel.TabIndex = 5;
-            this.startDateTimeLabel.Text = "Start Date Time (Local):";
+            this.startDateTimeLabel.Text = "Start Date Time:";
             // 
             // endDateTimePicker
             // 
             this.endDateTimePicker.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.endDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endDateTimePicker.Location = new System.Drawing.Point(520, 290);
+            this.endDateTimePicker.Location = new System.Drawing.Point(384, 348);
             this.endDateTimePicker.Name = "endDateTimePicker";
-            this.endDateTimePicker.Size = new System.Drawing.Size(422, 29);
+            this.endDateTimePicker.Size = new System.Drawing.Size(462, 29);
             this.endDateTimePicker.TabIndex = 6;
             // 
             // endDateTimeLabel
             // 
             this.endDateTimeLabel.AutoSize = true;
             this.endDateTimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.85714F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.endDateTimeLabel.Location = new System.Drawing.Point(35, 278);
+            this.endDateTimeLabel.Location = new System.Drawing.Point(31, 336);
             this.endDateTimeLabel.Name = "endDateTimeLabel";
-            this.endDateTimeLabel.Size = new System.Drawing.Size(400, 42);
+            this.endDateTimeLabel.Size = new System.Drawing.Size(276, 42);
             this.endDateTimeLabel.TabIndex = 7;
-            this.endDateTimeLabel.Text = "End Date Time (Local):";
+            this.endDateTimeLabel.Text = "End Date Time:";
             // 
             // exportButton
             // 
             this.exportButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.85714F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.exportButton.Location = new System.Drawing.Point(42, 441);
+            this.exportButton.Location = new System.Drawing.Point(38, 499);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(224, 86);
             this.exportButton.TabIndex = 8;
@@ -129,7 +130,7 @@
             // 
             this.logFilePathLabel.AutoSize = true;
             this.logFilePathLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.85714F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.logFilePathLabel.Location = new System.Drawing.Point(34, 358);
+            this.logFilePathLabel.Location = new System.Drawing.Point(30, 416);
             this.logFilePathLabel.Name = "logFilePathLabel";
             this.logFilePathLabel.Size = new System.Drawing.Size(248, 42);
             this.logFilePathLabel.TabIndex = 9;
@@ -137,17 +138,29 @@
             // 
             // logFilePathTextBox
             // 
-            this.logFilePathTextBox.Location = new System.Drawing.Point(520, 371);
+            this.logFilePathTextBox.Location = new System.Drawing.Point(384, 429);
             this.logFilePathTextBox.Name = "logFilePathTextBox";
-            this.logFilePathTextBox.Size = new System.Drawing.Size(422, 29);
+            this.logFilePathTextBox.Size = new System.Drawing.Size(462, 29);
             this.logFilePathTextBox.TabIndex = 10;
             this.logFilePathTextBox.Text = "C:\\traces.log";
+            // 
+            // descriptionLinkLabel
+            // 
+            this.descriptionLinkLabel.AutoSize = true;
+            this.descriptionLinkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.857143F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.descriptionLinkLabel.Location = new System.Drawing.Point(33, 35);
+            this.descriptionLinkLabel.Name = "descriptionLinkLabel";
+            this.descriptionLinkLabel.Size = new System.Drawing.Size(763, 29);
+            this.descriptionLinkLabel.TabIndex = 12;
+            this.descriptionLinkLabel.TabStop = true;
+            this.descriptionLinkLabel.Text = "https://github.com/bartlomiejmucha/Application-Insights-Logs-Exporter";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(983, 582);
+            this.ClientSize = new System.Drawing.Size(875, 618);
+            this.Controls.Add(this.descriptionLinkLabel);
             this.Controls.Add(this.logFilePathTextBox);
             this.Controls.Add(this.logFilePathLabel);
             this.Controls.Add(this.exportButton);
@@ -160,7 +173,7 @@
             this.Controls.Add(this.applicationIdLabel);
             this.Controls.Add(this.applicationIdTextBox);
             this.Name = "MainForm";
-            this.Text = "AILogsExporter by https://bartlomiejmucha.com, v0.1 beta";
+            this.Text = "AILogsExporter v0.1";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -180,6 +193,7 @@
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.Label logFilePathLabel;
         private System.Windows.Forms.TextBox logFilePathTextBox;
+        private System.Windows.Forms.LinkLabel descriptionLinkLabel;
     }
 }
 
