@@ -12,4 +12,4 @@ To use the tool you have to generate REST API Key. Here is a [link to a document
 ## Standalone
 To use a standalone version, go to the [releases page](https://github.com/bartlomiejmucha/Application-Insights-Logs-Exporter/releases) and download standalone version of the tool, unzip it and then execute AILogsExporter.exe file, provide settings and click Export.
  
-![Standalone application image]https://github.com/bartlomiejmucha/Application-Insights-Logs-Exporter/raw/master/src/images/standalone.jpg "Standalone application image")
+![Standalone application image](https://raw.githubusercontent.com/bartlomiejmucha/Application-Insights-Logs-Exporter/master/images/standalone.jpg "Standalone application image")
