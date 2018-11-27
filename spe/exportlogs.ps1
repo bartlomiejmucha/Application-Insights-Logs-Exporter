@@ -5,8 +5,8 @@ $result = Read-Variable -Parameters `
     @{ Name = "apiKey"; Value=""; Title="Api Key"}, 
     @{ Name = "startDateTime"; Value=[System.DateTime]::Now.AddDays(-1); Title="Start Date Time (Local)"; Editor="date time"}, 
     @{ Name = "endDateTime"; Value=[System.DateTime]::Now; Title="End Date Time (Local)"; Editor="date time"} `
-    -Description "More information how to get the Application Id an API Key: https://dev.applicationinsights.io/documentation/Authorization/API-key-and-App-ID" `
-    -Title "AILogsExporter by https://bartlomiejmucha.com" -Width 600 -Height 400 -OkButtonName "Export" -CancelButtonName "Cancel" -ShowHints
+    -Description "https://github.com/bartlomiejmucha/Application-Insights-Logs-Exporter" `
+    -Title "AILogsExporter v0.1" -Width 600 -Height 400 -OkButtonName "Export" -CancelButtonName "Cancel" -ShowHints
     
 if($result -ne "ok")
 {
