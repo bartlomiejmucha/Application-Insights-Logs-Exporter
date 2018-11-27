@@ -160,7 +160,7 @@
             this.Controls.Add(this.applicationIdLabel);
             this.Controls.Add(this.applicationIdTextBox);
             this.Name = "MainForm";
-            this.Text = "AILogsExporter by https://bartlomiejmucha.com, v. 0.1 beta";
+            this.Text = "AILogsExporter by https://bartlomiejmucha.com, v0.1 beta";
             this.ResumeLayout(false);
             this.PerformLayout();
 
