@@ -1,12 +1,11 @@
-# AILogsExporter v0.1 (powershell)
+# AILogsExporter v0.2 (powershell)
 # https://github.com/bartlomiejmucha/Application-Insights-Logs-Exporter
 Add-Type -AssemblyName System.Net.Http
 
 $applicationId = ""
 $apiKey = ""
-$startTimestampUtc = "2018-11-27T08:00:00"
-$endTimestampUtc = "2018-11-27T09:00:00"
 $logFilePath = "C:\traces.log"
+$query = "traces | where timestamp > ago(4d) | extend line = message"
 
 try 
 {  
@@ -21,22 +20,29 @@ try
 
     $response = $null;
     $lines = $null;
+    $lastTimeStamp = $null;
 
     do
     {
-        $path = "http://api.applicationinsights.io/v1/apps/$applicationId/query?query=traces|where timestamp >= datetime($startTimestampUtc) and timestamp <= datetime($endTimestampUtc)|project timestamp, message|order by timestamp asc";
+        $finalQuery = $query;
+        if ($lastTimeStamp -ne $null)
+        {
+            $finalQuery = "$query|where timestamp >= datetime($lastTimeStamp)"
+        }
 
-        $response = $client.GetAsync($path).Result
+        $finalQuery = "$finalQuery|order by timestamp asc|project timestamp, line"
+
+        $response = $client.GetAsync("http://api.applicationinsights.io/v1/apps/$applicationId/query?query=$finalQuery").Result
         if ($response.IsSuccessStatusCode)
         {
             $resultObject = $response.Content.ReadAsStringAsync().Result | ConvertFrom-Json
             $lines = $resultObject.tables[0].rows
             if ($lines.Count -gt 0)
             {
-                [Collections.Generic.List[String]]$linesAsString = foreach ($line in $lines) { $line[0] + "|" + $line[1] }
+                [Collections.Generic.List[String]]$linesAsString = foreach ($line in $lines) { $line[1] }
                 [System.IO.File]::AppendAllLines($logFilePath, $linesAsString)
 
-                $startTimestampUtc = $lines[-1][0]
+                $lastTimeStamp = $lines[-1][0]
             }
         }
         else 

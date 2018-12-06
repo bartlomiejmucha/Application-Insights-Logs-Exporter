@@ -1,12 +1,12 @@
-# AILogsExporter v0.1 (SPE)
+# AILogsExporter v0.2 (SPE)
 # https://github.com/bartlomiejmucha/Application-Insights-Logs-Exporter
+
 $result = Read-Variable -Parameters `
     @{ Name = "applicationId"; Value=""; Title="Application Id"}, 
     @{ Name = "apiKey"; Value=""; Title="Api Key"}, 
-    @{ Name = "startDateTime"; Value=[System.DateTime]::Now.AddDays(-1); Title="Start Date Time (Local)"; Editor="date time"}, 
-    @{ Name = "endDateTime"; Value=[System.DateTime]::Now; Title="End Date Time (Local)"; Editor="date time"} `
+    @{ Name = "query"; Value="traces | where timestamp > ago(1d) | extend line = message"; Title="Query"; lines=3} `
     -Description "https://github.com/bartlomiejmucha/Application-Insights-Logs-Exporter" `
-    -Title "AILogsExporter v0.1" -Width 600 -Height 400 -OkButtonName "Export" -CancelButtonName "Cancel" -ShowHints
+    -Title "AILogsExporter v0.2" -Width 600 -Height 400 -OkButtonName "Export" -CancelButtonName "Cancel" -ShowHints
     
 if($result -ne "ok")
 {
@@ -16,8 +16,6 @@ if($result -ne "ok")
 try 
 {  
     $logFilePath = "$($SitecoreDataFolder)\traces.log"
-    $startTimestampUtc = $startDateTime.ToUniversalTime().ToString("O")
-    $endTimestampUtc = $endDateTime.ToUniversalTime().ToString("O")
     
     $client = New-Object System.Net.Http.HttpClient
     $client.DefaultRequestHeaders.Add("x-api-key", $apiKey)
@@ -30,19 +28,28 @@ try
 
     $response = $null;
     $lines = $null;
-
+    $lastTimeStamp = $null;
+    
     do
     {
+        $finalQuery = $query
+        if ($lastTimeStamp -ne $null)
+        {
+            $finalQuery = "$query|where timestamp >= datetime($lastTimeStamp)"
+        }
+        
+        $finalQuery = "$finalQuery|order by timestamp asc|project timestamp, line"
+        
         $path = "http://api.applicationinsights.io/v1/apps/$applicationId/query?query=traces|where timestamp >= datetime($startTimestampUtc) and timestamp <= datetime($endTimestampUtc)|project timestamp, message|order by timestamp asc";
 
-        $response = $client.GetAsync($path).Result
+        $response = $client.GetAsync("http://api.applicationinsights.io/v1/apps/$applicationId/query?query=$finalQuery").Result
         if ($response.IsSuccessStatusCode)
         {
             $resultObject = $response.Content.ReadAsStringAsync().Result | ConvertFrom-Json
             $lines = $resultObject.tables[0].rows
             if ($lines.Count -gt 0)
             {
-                [Collections.Generic.List[String]]$linesAsString = foreach ($line in $lines) { $line[0] + "|" + $line[1] }
+                [Collections.Generic.List[String]]$linesAsString = foreach ($line in $lines) { $line[1] }
                 [System.IO.File]::AppendAllLines($logFilePath, $linesAsString)
 
                 $startTimestampUtc = $lines[-1][0]
