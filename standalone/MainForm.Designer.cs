@@ -145,7 +145,7 @@
             this.queryTextBox.Size = new System.Drawing.Size(1075, 151);
             this.queryTextBox.TabIndex = 10;
             this.queryTextBox.Text = "traces \r\n| where timestamp > ago(1d)\r\n| extend line = strcat(format_datetime(time" +
-    "stamp, \'yyyy-M-dd\'),\"|\",message)";
+    "stamp, \"yyyy-M-dd\"),\"|\",message)";
             // 
             // queryProjectLabel
             // 
@@ -254,7 +254,7 @@
             this.Controls.Add(this.applicationIdLabel);
             this.Controls.Add(this.applicationIdTextBox);
             this.Name = "MainForm";
-            this.Text = "AILogsExporter v0.3";
+            this.Text = "AILogsExporter v0.3.1";
             ((System.ComponentModel.ISupportInitialize)(this.queryTopNumericBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

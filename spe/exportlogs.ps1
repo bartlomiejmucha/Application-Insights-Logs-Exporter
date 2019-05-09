@@ -1,15 +1,15 @@
-# AILogsExporter v0.3 (SPE)
+# AILogsExporter v0.3.1 (SPE)
 # https://github.com/bartlomiejmucha/Application-Insights-Logs-Exporter
 
 $result = Read-Variable -Parameters `
     @{ Name = "applicationId"; Value=""; Title="Application Id"}, 
     @{ Name = "apiKey"; Value=""; Title="Api Key"}, 
-    @{ Name = "query"; Value='traces | where timestamp > ago(1d) | extend line=strcat(format_datetime(timestamp,"yyyy-M-dd"),"|",message)'; Title="Query"; lines=3},
+    @{ Name = "query"; Value='traces | where timestamp > ago(1d) | extend line=strcat(format_datetime(timestamp,"yyyy-MM-dd"),"|",message)'; Title="Query"; lines=3},
     @{ Name = "batchSize"; Value=500000; Title="Batch Size" },
     @{ Name = "insertBatchNumberLine"; Value=$false; Title="Insert Batch Number Line"},
     @{ Name = "exportAllBatches"; Value=$true; Title="Export All Batches"} `
     -Description "https://github.com/bartlomiejmucha/Application-Insights-Logs-Exporter" `
-    -Title "AILogsExporter v0.3" -Width 600 -Height 600 -OkButtonName "Export" -CancelButtonName "Cancel" -ShowHints
+    -Title "AILogsExporter v0.3.1" -Width 600 -Height 600 -OkButtonName "Export" -CancelButtonName "Cancel" -ShowHints
     
 if($result -ne "ok")
 {
@@ -67,7 +67,7 @@ try
         
         Write-Host "Requesting a log batch #$batchNumber"
         
-        $response =(GetAsyncWithRetry $client "http://api.applicationinsights.io/v1/apps/$applicationId/query?query=$finalQuery" $retryCount)
+        $response =(GetAsyncWithRetry $client "https://api.applicationinsights.io/v1/apps/$applicationId/query?query=$finalQuery" $retryCount)
         if ($response.IsSuccessStatusCode)
         {
             $responseContent = $response.Content.ReadAsStringAsync().Result | ConvertFrom-Json

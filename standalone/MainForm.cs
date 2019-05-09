@@ -52,7 +52,7 @@ namespace AILogsExporter
 
                         SetStatusLine($"Requesting a log batch #{batchNumber}");
 
-                        response = GetAsyncWithRetry(client, $"http://api.applicationinsights.io/v1/apps/{applicationId}/query?query={query}", 3);
+                        response = GetAsyncWithRetry(client, $"https://api.applicationinsights.io/v1/apps/{applicationId}/query?query={query}", 3);
                         if (response.IsSuccessStatusCode)
                         {
                             var responseContent = await response.Content.ReadAsAsync<JObject>();

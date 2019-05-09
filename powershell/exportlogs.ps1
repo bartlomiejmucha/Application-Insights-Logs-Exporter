@@ -1,4 +1,4 @@
-# AILogsExporter v0.3 (powershell)
+# AILogsExporter v0.3.1 (powershell)
 # https://github.com/bartlomiejmucha/Application-Insights-Logs-Exporter
 Add-Type -AssemblyName System.Net.Http
 
@@ -24,7 +24,7 @@ function GetAsyncWithRetry
 $applicationId = ''
 $apiKey = ''
 $logFilePath = 'C:\traces.log'
-$query = 'traces | where timestamp > ago(1d) | extend line = strcat(format_datetime(timestamp, ''yyyy-M-dd''),"|",message)'
+$query = 'traces | where timestamp > ago(1d) | extend line = strcat(format_datetime(timestamp, "yyyy-MM-dd"),"|",message)'
 $batchSize = 500000
 $retryCount = 3
 $insertBatchNumberLine = $false
@@ -59,7 +59,7 @@ try
 
         Write-Host "Requesting a log batch #$batchNumber"
 
-        $response = (GetAsyncWithRetry $client "http://api.applicationinsights.io/v1/apps/$applicationId/query?query=$finalQuery" $retryCount)
+        $response = (GetAsyncWithRetry $client "https://api.applicationinsights.io/v1/apps/$applicationId/query?query=$finalQuery" $retryCount)
         if ($response.IsSuccessStatusCode)
         {
             $responseContent = $response.Content.ReadAsStringAsync().Result | ConvertFrom-Json
